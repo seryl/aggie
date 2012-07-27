@@ -2,6 +2,7 @@
   "name":"aggie",
   "version":"0.0.3",
   "dependencies":{
+    "commander":"1.0.0",
     "express":"3.0.0rc1"
   }
 }

@@ -1,4 +1,3 @@
-aggie
-======
+# aggie
 
-Crawl APIs
+An aggregation abstraction framework and client.

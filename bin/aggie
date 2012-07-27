@@ -1,5 +1,41 @@
-#!/bin/sh
+#!/usr/bin/env node
+;(function() { // wrapper in case we're in module_context mode
 
-basedir=`dirname "$0"`
+process.title = "aggie"
 
-node "$basedir/node_modules/aggie/bin/aggie.js" "$@"
+/**
+ * Module dependencies.
+ */
+
+var exec = require('child_process').exec
+  , program = require('commander')
+  , pkg = require('../package.json')
+  , version = pkg.version;
+
+// CLI
+
+program
+  .version(version)
+  .option('-s, --server', 'start the aggie server')
+  .option('-m, --module', 'selects which modules to use')
+  .parse(process.argv)
+
+if (process.argv.length < 3) {
+  process.stdout.write(program.helpInformation());
+}
+
+// Path
+
+var path = program.args.shift() || '.';
+
+/**
+ * Exit with the given `str`.
+ *
+ * @param {String} str
+ */
+function abort(str) {
+  console.error(str);
+  process.exit(1);
+}
+
+})()
